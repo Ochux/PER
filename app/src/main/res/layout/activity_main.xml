@@ -11,12 +11,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -37,13 +33,13 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <EditText
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category"
-        android:hint="description"
-        android:id="@+id/description"/>
+        app:layout_constraintTop_toBottomOf="@+id/category" />
 
     <Button
         android:id="@+id/button"

@@ -2,6 +2,7 @@ package com.example.persistence
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Room
 import com.example.persistence.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,14 +17,24 @@ private lateinit var myShoppingList: MutableList<ShoppingModel>
 
         myShoppingAdapter = ShoppingAdapter(myShoppingList)
         binding.recyclerView.adapter = myShoppingAdapter
+        val db = Room.databaseBuilder(
+            applicationContext,
+            ShoppingDatabase::class.java, "shopping-database-name"
+        ).build()
+
+        val shoppingDAO = db.shoppingDao()
+        myShoppingList = shoppingDAO.getAllShoppingItems().toMutableList()
+        myShoppingAdapter.notifyDataSetChanged()
 
         binding.button.setOnClickListener {
             val category: String = binding.category.toString()
             val description: String = binding.description.toString()
 
             val shoppingItem = ShoppingModel(category, description)
-            myShoppingList.add(shoppingItem)
+             shoppingDAO.addShoppingItem(shoppingItem)
+
             myShoppingAdapter.notifyDataSetChanged()
         }
+
     }
 }
