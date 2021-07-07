@@ -16,14 +16,18 @@ private lateinit var myShoppingList: MutableList<ShoppingModel>
           myShoppingList = mutableListOf()
 
         myShoppingAdapter = ShoppingAdapter(myShoppingList)
+
         binding.recyclerView.adapter = myShoppingAdapter
         val db = Room.databaseBuilder(
             applicationContext,
             ShoppingDatabase::class.java, "shopping-database-name"
-        ).build()
+        ).allowMainThreadQueries().build()
 
         val shoppingDAO = db.shoppingDao()
         myShoppingList = shoppingDAO.getAllShoppingItems().toMutableList()
+        myShoppingAdapter.notifyDataSetChanged()
+        binding.recyclerView.adapter = myShoppingAdapter
+
         myShoppingAdapter.notifyDataSetChanged()
 
         binding.button.setOnClickListener {
@@ -33,7 +37,7 @@ private lateinit var myShoppingList: MutableList<ShoppingModel>
             val shoppingItem = ShoppingModel(category, description)
              shoppingDAO.addShoppingItem(shoppingItem)
 
-            myShoppingAdapter.notifyDataSetChanged()
+
         }
 
     }

@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.persistence.databinding.ShoppingItemBinding
 
-class ShoppingAdapter(val shoppingItems: List<ShoppingModel>)
+class ShoppingAdapter(
+    val shoppingItems: List<ShoppingModel>)
     : RecyclerView.Adapter<ShoppingAdapter.ViewHolder>()
 
 { class ViewHolder(val binding: ShoppingItemBinding)
